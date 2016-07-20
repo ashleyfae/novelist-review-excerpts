@@ -55,15 +55,15 @@ function novelist_review_excerpts_load_assets( $hook ) {
 		'jquery'
 	);
 
-	wp_register_script( 'novelist-review-excerpts-admin-scripts', $js_dir . 'admin-scripts' . $suffix . '.js', $admin_deps, NOVELIST_REVIEW_EXCERPTS_VERSION, true );
-	wp_enqueue_script( 'novelist-review-excerpts-admin-scripts' );
+	//wp_register_script( 'novelist-review-excerpts-admin-scripts', $js_dir . 'admin-scripts' . $suffix . '.js', $admin_deps, NOVELIST_REVIEW_EXCERPTS_VERSION, true );
+	//wp_enqueue_script( 'novelist-review-excerpts-admin-scripts' );
 
 	/*
 	 * Stylesheets
 	 */
 
-	wp_register_style( 'novelist-review-excerpts-admin', $css_dir . 'admin-css' . $suffix . '.css', NOVELIST_REVIEW_EXCERPTS_VERSION );
-	wp_enqueue_style( 'novelist-review-excerpts-admin' );
+	//wp_register_style( 'novelist-review-excerpts-admin', $css_dir . 'admin-css' . $suffix . '.css', NOVELIST_REVIEW_EXCERPTS_VERSION );
+	//wp_enqueue_style( 'novelist-review-excerpts-admin' );
 }
 
 add_action( 'admin_enqueue_scripts', 'novelist_review_excerpts_load_assets', 100 );

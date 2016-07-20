@@ -47,11 +47,11 @@ function novelist_review_excerpts_meta_box( $book, $post, $settings ) {
 		)
 	);
 	?>
-	<div id="novelist-review-excerpts">
+	<div id="novelist-review-excerpts" class="novelist-repeatable-group">
 		<?php foreach ( $quotes as $key => $quote ) : ?>
-			<div class="novelist-review-excerpts-section" data-iterator="<?php echo esc_attr( absint( $key ) ); ?>">
-				<div class="novelist-review-excerpts-heading">
-					<span class="dashicons novelist-review-excerpts-toggle"></span>
+			<div class="novelist-repeater-section" data-iterator="<?php echo esc_attr( absint( $key ) ); ?>">
+				<div class="novelist-repeater-heading">
+					<span class="dashicons novelist-repeater-toggle"></span>
 					<h3><?php printf( __( 'Review #%s', 'novelist-review-excerpts' ), absint( $key ) + 1 ); ?></h3>
 				</div>
 
@@ -73,14 +73,14 @@ function novelist_review_excerpts_meta_box( $book, $post, $settings ) {
 						<textarea id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_review" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][review]" rows="10"><?php echo esc_textarea( $quote['quote'] ); ?></textarea>
 					</div>
 				</div>
-				<div class="novelist-box-row novelist-review-excerpts-actions">
-					<button class="button novelist-review-excerpts-remove"><?php _e( 'Remove Quote', 'novelist-review-excerpts' ); ?></button>
+				<div class="novelist-box-row novelist-repeater-actions">
+					<button class="button novelist-repeater-remove"><?php _e( 'Remove Review', 'novelist-review-excerpts' ); ?></button>
 				</div>
 			</div>
 		<?php endforeach; ?>
 
 		<div class="novelist-box-row">
-			<button data-selector="#novelist-review-excerpts" data-group-title="<?php esc_attr_e( 'Quote {#}', 'novelist-review-excerpts' ); ?>" class="novelist-add-review button"><?php _e( 'Add Review', 'novelist-review-excerpts' ); ?></button>
+			<button data-selector="#novelist-review-excerpts" data-group-title="<?php esc_attr_e( 'Review #{#}', 'novelist-review-excerpts' ); ?>" class="novelist-add-repeater-section button"><?php _e( 'Add Review', 'novelist-review-excerpts' ); ?></button>
 		</div>
 	</div>
 	<?php
