@@ -47,50 +47,55 @@ function novelist_review_excerpts_meta_box( $book, $post, $settings ) {
 		)
 	);
 	?>
-	<div id="novelist-review-excerpts" class="novelist-repeatable-group">
-		<?php foreach ( $quotes as $key => $quote ) :
-			$defaults = array(
-				'reviewer' => '',
-				'url'      => '',
-				'quote'    => ''
-			);
+	<div class="novelist-box-row">
+		<label><?php _e( 'Review Excerpts', 'novelist-review-excerpts' ); ?></label>
+		<div class="novelist-input-wrapper">
+			<div id="novelist-review-excerpts" class="novelist-repeatable-group novelist-repeater-sortable">
+				<?php foreach ( $quotes as $key => $quote ) :
+					$defaults = array(
+						'reviewer' => '',
+						'url'      => '',
+						'quote'    => ''
+					);
 
-			$quote = wp_parse_args( $quote, $defaults );
-			?>
+					$quote = wp_parse_args( $quote, $defaults );
+					?>
 
-			<div class="novelist-repeater-section" data-iterator="<?php echo esc_attr( absint( $key ) ); ?>">
-				<div class="novelist-repeater-heading">
-					<span class="dashicons novelist-repeater-toggle"></span>
-					<span class="dashicons dashicons-trash novelist-repeater-remove" data-selector="#novelist-review-excerpts"></span>
-					<h3><?php printf( __( 'Review #%s', 'novelist-review-excerpts' ), absint( $key ) + 1 ); ?></h3>
-				</div>
+					<div class="novelist-repeater-section" data-iterator="<?php echo esc_attr( absint( $key ) ); ?>">
+						<div class="novelist-repeater-heading">
+							<span class="dashicons novelist-repeater-toggle"></span>
+							<span class="dashicons dashicons-trash novelist-repeater-remove" data-selector="#novelist-review-excerpts"></span>
+							<h3><?php printf( __( 'Review #%s', 'novelist-review-excerpts' ), absint( $key ) + 1 ); ?></h3>
+						</div>
+
+						<div class="novelist-box-row">
+							<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_reviewer"><?php _e( 'Reviewer', 'novelist-review-excerpts' ); ?></label>
+							<div class="novelist-input-wrapper">
+								<input type="text" id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_reviewer" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][reviewer]" value="<?php echo esc_attr( $quote['reviewer'] ); ?>">
+							</div>
+						</div>
+						<div class="novelist-box-row">
+							<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_url"><?php _e( 'URL', 'novelist-review-excerpts' ); ?></label>
+							<div class="novelist-input-wrapper">
+								<input type="url" id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_url" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][url]" placeholder="http://" value="<?php echo esc_url( $quote['url'] ); ?>">
+							</div>
+						</div>
+						<div class="novelist-box-row">
+							<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_quote"><?php _e( 'Excerpt', 'novelist-review-excerpts' ); ?></label>
+							<div class="novelist-input-wrapper">
+								<textarea id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_quote" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][quote]" rows="10"><?php echo esc_textarea( $quote['quote'] ); ?></textarea>
+							</div>
+						</div>
+						<div class="novelist-box-row novelist-repeater-actions">
+							<button class="button novelist-repeater-remove" data-selector="#novelist-review-excerpts"><?php _e( 'Remove Review', 'novelist-review-excerpts' ); ?></button>
+						</div>
+					</div>
+				<?php endforeach; ?>
 
 				<div class="novelist-box-row">
-					<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_reviewer"><?php _e( 'Reviewer', 'novelist-review-excerpts' ); ?></label>
-					<div class="novelist-input-wrapper">
-						<input type="text" id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_reviewer" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][reviewer]" value="<?php echo esc_attr( $quote['reviewer'] ); ?>">
-					</div>
-				</div>
-				<div class="novelist-box-row">
-					<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_url"><?php _e( 'URL', 'novelist-review-excerpts' ); ?></label>
-					<div class="novelist-input-wrapper">
-						<input type="url" id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_url" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][url]" placeholder="http://" value="<?php echo esc_url( $quote['url'] ); ?>">
-					</div>
-				</div>
-				<div class="novelist-box-row">
-					<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_quote"><?php _e( 'Excerpt', 'novelist-review-excerpts' ); ?></label>
-					<div class="novelist-input-wrapper">
-						<textarea id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_quote" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][quote]" rows="10"><?php echo esc_textarea( $quote['quote'] ); ?></textarea>
-					</div>
-				</div>
-				<div class="novelist-box-row novelist-repeater-actions">
-					<button class="button novelist-repeater-remove" data-selector="#novelist-review-excerpts"><?php _e( 'Remove Review', 'novelist-review-excerpts' ); ?></button>
+					<button data-selector="#novelist-review-excerpts" data-group-title="<?php esc_attr_e( 'Review #{#}', 'novelist-review-excerpts' ); ?>" class="novelist-add-repeater-section button"><?php _e( 'Add Review', 'novelist-review-excerpts' ); ?></button>
 				</div>
 			</div>
-		<?php endforeach; ?>
-
-		<div class="novelist-box-row">
-			<button data-selector="#novelist-review-excerpts" data-group-title="<?php esc_attr_e( 'Review #{#}', 'novelist-review-excerpts' ); ?>" class="novelist-add-repeater-section button"><?php _e( 'Add Review', 'novelist-review-excerpts' ); ?></button>
 		</div>
 	</div>
 	<?php
@@ -139,3 +144,35 @@ function novelist_review_excerpts_sanitize_field( $input ) {
 }
 
 add_filter( 'novelist/book/meta-box/sanitize/novelist_review_quotes', 'novelist_review_excerpts_sanitize_field' );
+
+/**
+ * Render Review Excerpts
+ *
+ * @param string        $value          Current value for this field
+ * @param string        $key            The key that is being filtered
+ * @param array         $all_fields     All available book fields
+ * @param array         $enabled_fields Array of the enabled book fields
+ * @param Novelist_Book $book           Object for the current book
+ *
+ * @since 1.0.0
+ * return string
+ */
+function novelist_review_excerpts_render_field( $value, $key, $all_fields, $enabled_fields, $book ) {
+
+	$quotes = $book->get_value( 'novelist_review_quotes' );
+
+	if ( ! $quotes || ! is_array( $quotes ) || ! count( $quotes ) || ( count( $quotes ) == 1 && ! $quotes[0]['quote'] ) ) {
+		return false;
+	}
+
+	$final_value = '';
+
+	foreach ( $quotes as $quote ) {
+
+	}
+
+	return $final_value;
+
+}
+
+add_filter( 'novelist/book/pre-render/review_excerpts', 'novelist_review_excerpts_render_field', 10, 5 );
