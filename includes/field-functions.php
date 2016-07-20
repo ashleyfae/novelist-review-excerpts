@@ -48,10 +48,20 @@ function novelist_review_excerpts_meta_box( $book, $post, $settings ) {
 	);
 	?>
 	<div id="novelist-review-excerpts" class="novelist-repeatable-group">
-		<?php foreach ( $quotes as $key => $quote ) : ?>
+		<?php foreach ( $quotes as $key => $quote ) :
+			$defaults = array(
+				'reviewer' => '',
+				'url'      => '',
+				'quote'    => ''
+			);
+
+			$quote = wp_parse_args( $quote, $defaults );
+			?>
+
 			<div class="novelist-repeater-section" data-iterator="<?php echo esc_attr( absint( $key ) ); ?>">
 				<div class="novelist-repeater-heading">
 					<span class="dashicons novelist-repeater-toggle"></span>
+					<span class="dashicons dashicons-trash novelist-repeater-remove" data-selector="#novelist-review-excerpts"></span>
 					<h3><?php printf( __( 'Review #%s', 'novelist-review-excerpts' ), absint( $key ) + 1 ); ?></h3>
 				</div>
 
@@ -64,17 +74,17 @@ function novelist_review_excerpts_meta_box( $book, $post, $settings ) {
 				<div class="novelist-box-row">
 					<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_url"><?php _e( 'URL', 'novelist-review-excerpts' ); ?></label>
 					<div class="novelist-input-wrapper">
-						<input type="text" id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_url" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][url]" value="<?php echo esc_url( $quote['url'] ); ?>">
+						<input type="url" id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_url" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][url]" placeholder="http://" value="<?php echo esc_url( $quote['url'] ); ?>">
 					</div>
 				</div>
 				<div class="novelist-box-row">
-					<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_review"><?php _e( 'Excerpt', 'novelist-review-excerpts' ); ?></label>
+					<label for="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_quote"><?php _e( 'Excerpt', 'novelist-review-excerpts' ); ?></label>
 					<div class="novelist-input-wrapper">
-						<textarea id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_review" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][review]" rows="10"><?php echo esc_textarea( $quote['quote'] ); ?></textarea>
+						<textarea id="novelist_review_quotes_<?php echo esc_attr( $key ); ?>_quote" name="novelist_review_quotes[<?php echo esc_attr( $key ); ?>][quote]" rows="10"><?php echo esc_textarea( $quote['quote'] ); ?></textarea>
 					</div>
 				</div>
 				<div class="novelist-box-row novelist-repeater-actions">
-					<button class="button novelist-repeater-remove"><?php _e( 'Remove Review', 'novelist-review-excerpts' ); ?></button>
+					<button class="button novelist-repeater-remove" data-selector="#novelist-review-excerpts"><?php _e( 'Remove Review', 'novelist-review-excerpts' ); ?></button>
 				</div>
 			</div>
 		<?php endforeach; ?>
@@ -87,3 +97,45 @@ function novelist_review_excerpts_meta_box( $book, $post, $settings ) {
 }
 
 add_action( 'novelist/meta-box/display-field-review_excerpts', 'novelist_review_excerpts_meta_box', 10, 3 );
+
+/**
+ * Add `novelist_review_quotes` as a field to be saved.
+ *
+ * @param array $fields Array of name attributes to be located in $_POST and saved.
+ *
+ * @since 1.0.0
+ * @return array
+ */
+function novelist_review_excerpts_save_fields( $fields ) {
+	$fields[] = 'novelist_review_quotes';
+
+	return $fields;
+}
+
+add_filter( 'novelist/book/meta-box/saved-fields', 'novelist_review_excerpts_save_fields' );
+
+/**
+ * Sanitize Review Excerpts
+ *
+ * @param array $input
+ *
+ * @since 1.0.0
+ * @return array
+ */
+function novelist_review_excerpts_sanitize_field( $input ) {
+	$sanitized_fields = array();
+
+	if ( ! is_array( $input ) ) {
+		$input = array();
+	}
+
+	foreach ( $input as $key => $quote ) {
+		$sanitized_fields[ $key ]['reviewer'] = array_key_exists( 'reviewer', $quote ) ? sanitize_text_field( $quote['reviewer'] ) : '';
+		$sanitized_fields[ $key ]['url']      = array_key_exists( 'url', $quote ) ? esc_url_raw( $quote['url'] ) : '';
+		$sanitized_fields[ $key ]['quote']    = array_key_exists( 'quote', $quote ) ? wp_kses_post( $quote['quote'] ) : '';
+	}
+
+	return $sanitized_fields;
+}
+
+add_filter( 'novelist/book/meta-box/sanitize/novelist_review_quotes', 'novelist_review_excerpts_sanitize_field' );
