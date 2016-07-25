@@ -173,7 +173,7 @@ function novelist_review_excerpts_render_field( $value, $key, $all_fields, $enab
 		if ( $template ) {
 			include $template;
 		}
-		$final_value .= ob_get_clean();
+		$final_value .= apply_filters( 'novelist-review-excerpts/render/single-quote-template', ob_get_clean(), $quote, $book );
 	}
 
 	return $final_value;
