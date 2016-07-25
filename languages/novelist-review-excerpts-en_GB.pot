@@ -1,0 +1,114 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Novelist Review Excerpts\n"
+"POT-Creation-Date: 2016-07-25 14:45-0000\n"
+"PO-Revision-Date: 2016-07-25 14:46-0000\n"
+"Last-Translator: Nose Graze Ltd <support@nosegraze.com>\n"
+"Language-Team: Nose Graze Ltd <support@nosegraze.com>\n"
+"Language: en_GB\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 1.6.10\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
+"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
+"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: includes/field-functions.php:20 includes/field-functions.php:51
+msgid "Review Excerpts"
+msgstr ""
+
+#: includes/field-functions.php:68
+#, php-format
+msgid "Review #%s"
+msgstr ""
+
+#: includes/field-functions.php:72
+msgid "Reviewer"
+msgstr ""
+
+#: includes/field-functions.php:78
+msgid "URL"
+msgstr ""
+
+#: includes/field-functions.php:84
+msgid "Excerpt"
+msgstr ""
+
+#: includes/field-functions.php:90
+msgid "Remove Review"
+msgstr ""
+
+#: includes/field-functions.php:96
+msgid "Review #{#}"
+msgstr ""
+
+#: includes/field-functions.php:96
+msgid "Add Review"
+msgstr ""
+
+#: includes/updater/EDD_SL_Plugin_Updater.php:187
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s."
+msgstr ""
+
+#: includes/updater/EDD_SL_Plugin_Updater.php:195
+#, php-format
+msgid ""
+"There is a new version of %1$s available. %2$sView version %3$s details%4$s "
+"or %5$supdate now%6$s."
+msgstr ""
+
+#: includes/updater/EDD_SL_Plugin_Updater.php:351
+msgid "You do not have permission to install plugin updates"
+msgstr ""
+
+#: includes/updater/EDD_SL_Plugin_Updater.php:351
+#: includes/updater/class-novelist-license.php:287
+msgid "Error"
+msgstr ""
+
+#: includes/updater/class-novelist-license.php:164
+#, php-format
+msgid "%s License Key"
+msgstr ""
+
+#: includes/updater/class-novelist-license.php:287
+msgid "Nonce verification failed"
+msgstr ""
+
+#: includes/updater/class-novelist-license.php:402
+#, php-format
+msgid ""
+"You have invalid or expired license keys for Novelist. Please go to the <a "
+"href=\"%s\" title=\"Go to Licenses page\">Licenses page</a> to correct this "
+"issue."
+msgstr ""
+
+#: includes/updater/class-novelist-license.php:439
+msgid "Enter valid license key for automatic updates."
+msgstr ""
+
+#: novelist-review-excerpts.php:77 novelist-review-excerpts.php:89
+msgid "Cheatin&#8217; huh?"
+msgstr ""
+
+#: novelist-review-excerpts.php:219
+#, php-format
+msgid ""
+"Error! The Novelist plugin could not be found. You need to install Novelist "
+"version %s or later in order to use the Review Excerpts add-on."
+msgstr ""
+
+#: novelist-review-excerpts.php:238
+#, php-format
+msgid ""
+"Error! The Novelist Review Excerpts plugin requires PHP version 5.3 or "
+"greater. You have version %s. Please contact your web host to upgrade your "
+"version of PHP."
+msgstr ""
