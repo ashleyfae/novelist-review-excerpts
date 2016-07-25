@@ -168,7 +168,12 @@ function novelist_review_excerpts_render_field( $value, $key, $all_fields, $enab
 	$final_value = '';
 
 	foreach ( $quotes as $quote ) {
-
+		ob_start();
+		$template = novelist_get_template_part( 'review-excerpts/single', 'quote', false );
+		if ( $template ) {
+			include $template;
+		}
+		$final_value .= ob_get_clean();
 	}
 
 	return $final_value;
@@ -176,3 +181,11 @@ function novelist_review_excerpts_render_field( $value, $key, $all_fields, $enab
 }
 
 add_filter( 'novelist/book/pre-render/review_excerpts', 'novelist_review_excerpts_render_field', 10, 5 );
+
+function novelist_review_excerpts_template_path( $paths ) {
+	$paths[] = NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR . 'templates';
+
+	return $paths;
+}
+
+add_filter( 'novelist/template-paths', 'novelist_review_excerpts_template_path' );
