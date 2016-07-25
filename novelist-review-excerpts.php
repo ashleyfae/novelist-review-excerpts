@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: Novelist Review Excerpts
- * Plugin URI: https://novelistplugin.com
+ * Plugin URI: https://novelistplugin.com/downloads/review-excerpts/
  * Description: Allows you to include excerpts of reviews on your book pages.
  * Version: 1.0
  * Author: Nose Graze
@@ -195,7 +195,7 @@ function novelist_review_excerpts_init() {
 	// Load the add-on if using PHP 5.3+ and if Novelist is installed and is the correct version.
 	if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
 		add_action( 'admin_notices', 'novelist_review_excerpts_insufficient_php_version' );
-	} elseif ( class_exists( 'Novelist' ) && defined( 'NOVELIST_VERSION' ) && version_compare( NOVELIST_VERSION, '1.0.2', '>=' ) ) {
+	} elseif ( class_exists( 'Novelist' ) && defined( 'NOVELIST_VERSION' ) && version_compare( NOVELIST_VERSION, '1.0.3', '>=' ) ) {
 		Novelist_Review_Excerpts();
 	} else {
 		add_action( 'admin_notices', 'novelist_review_excerpts_novelist_not_installed' );
@@ -217,7 +217,7 @@ function novelist_review_excerpts_novelist_not_installed() {
 	$class   = 'notice notice-error';
 	$message = sprintf(
 		__( 'Error! The Novelist plugin could not be found. You need to install Novelist version %s or later in order to use the Review Excerpts add-on.', 'novelist-review-excerpts' ),
-		'1.0.2'
+		'1.0.3'
 	);
 
 	printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
