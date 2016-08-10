@@ -10,14 +10,16 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Allows plugins to use their own update API.
  *
  * @author Pippin Williamson
- * @version 1.6.3
+ * @version 1.6.5
  */
 class EDD_SL_Plugin_Updater {
-	private $api_url   = '';
-	private $api_data  = array();
-	private $name      = '';
-	private $slug      = '';
-	private $version   = '';
+
+	private $api_url     = '';
+	private $api_data    = array();
+	private $name        = '';
+	private $slug        = '';
+	private $version     = '';
+	private $wp_override = false;
 
 	/**
 	 * Class constructor.
@@ -33,11 +35,12 @@ class EDD_SL_Plugin_Updater {
 
 		global $edd_plugin_data;
 
-		$this->api_url  = trailingslashit( $_api_url );
-		$this->api_data = $_api_data;
-		$this->name     = plugin_basename( $_plugin_file );
-		$this->slug     = basename( $_plugin_file, '.php' );
-		$this->version  = $_api_data['version'];
+		$this->api_url     = trailingslashit( $_api_url );
+		$this->api_data    = $_api_data;
+		$this->name        = plugin_basename( $_plugin_file );
+		$this->slug        = basename( $_plugin_file, '.php' );
+		$this->version     = $_api_data['version'];
+		$this->wp_override = isset( $_api_data['wp_override'] ) ? (bool) $_api_data['wp_override'] : false;
 
 		$edd_plugin_data[ $this->slug ] = $this->api_data;
 
@@ -80,35 +83,34 @@ class EDD_SL_Plugin_Updater {
 
 		global $pagenow;
 
-		if( ! is_object( $_transient_data ) ) {
+		if ( ! is_object( $_transient_data ) ) {
 			$_transient_data = new stdClass;
 		}
 
-		if( 'plugins.php' == $pagenow && is_multisite() ) {
+		if ( 'plugins.php' == $pagenow && is_multisite() ) {
 			return $_transient_data;
 		}
 
-		if ( empty( $_transient_data->response ) || empty( $_transient_data->response[ $this->name ] ) ) {
+		if ( ! empty( $_transient_data->response ) && ! empty( $_transient_data->response[ $this->name ] ) && false === $this->wp_override ) {
+			return $_transient_data;
+		}
 
-			$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
+		$version_info = $this->api_request( 'plugin_latest_version', array( 'slug' => $this->slug ) );
 
-			if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
+		if ( false !== $version_info && is_object( $version_info ) && isset( $version_info->new_version ) ) {
 
-				if( version_compare( $this->version, $version_info->new_version, '<' ) ) {
+			if ( version_compare( $this->version, $version_info->new_version, '<' ) ) {
 
-					$_transient_data->response[ $this->name ] = $version_info;
-
-				}
-
-				$_transient_data->last_checked = time();
-				$_transient_data->checked[ $this->name ] = $this->version;
+				$_transient_data->response[ $this->name ] = $version_info;
 
 			}
+
+			$_transient_data->last_checked           = time();
+			$_transient_data->checked[ $this->name ] = $this->version;
 
 		}
 
 		return $_transient_data;
-
 	}
 
 	/**
@@ -118,6 +120,10 @@ class EDD_SL_Plugin_Updater {
 	 * @param array   $plugin
 	 */
 	public function show_update_notification( $file, $plugin ) {
+
+		if ( is_network_admin() ) {
+			return;
+		}
 
 		if( ! current_user_can( 'update_plugins' ) ) {
 			return;
@@ -178,7 +184,10 @@ class EDD_SL_Plugin_Updater {
 
 			// build a plugin list row, with update notification
 			$wp_list_table = _get_list_table( 'WP_Plugins_List_Table' );
-			echo '<tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange"><div class="update-message">';
+			# <tr class="plugin-update-tr"><td colspan="' . $wp_list_table->get_column_count() . '" class="plugin-update colspanchange">
+			echo '<tr class="plugin-update-tr" id="' . $this->slug . '-update" data-slug="' . $this->slug . '" data-plugin="' . $this->slug . '/' . $file . '">';
+			echo '<td colspan="3" class="plugin-update colspanchange">';
+			echo '<div class="update-message notice inline notice-warning notice-alt">';
 
 			$changelog_link = self_admin_url( 'index.php?edd_sl_action=view_plugin_changelog&plugin=' . $this->name . '&slug=' . $this->slug . '&TB_iframe=true&width=772&height=911' );
 
@@ -207,7 +216,6 @@ class EDD_SL_Plugin_Updater {
 			echo '</div></td></tr>';
 		}
 	}
-
 
 	/**
 	 * Updates information on the "View version x.x details" page with custom data.
@@ -265,7 +273,6 @@ class EDD_SL_Plugin_Updater {
 		return $_data;
 	}
 
-
 	/**
 	 * Disable SSL verification in order to prevent download update failures
 	 *
@@ -302,7 +309,7 @@ class EDD_SL_Plugin_Updater {
 			return;
 		}
 
-		if( $this->api_url == home_url() ) {
+		if( $this->api_url == trailingslashit (home_url() ) ) {
 			return false; // Don't allow a plugin to ping itself
 		}
 

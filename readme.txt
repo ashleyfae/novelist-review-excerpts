@@ -22,6 +22,10 @@ Allows you to include excerpts of reviews on your book pages.
 
 == Changelog ==
 
+**1.0.1**
+
+* Updated EDD_SL_Plugin_Updater class.
+
 **1.0.0 - 25 July 2016**
 
 * Initial release.
