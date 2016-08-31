@@ -25,6 +25,7 @@ Allows you to include excerpts of reviews on your book pages.
 **1.0.1**
 
 * Updated EDD_SL_Plugin_Updater class.
+* Added Novelist_Extension_Activation class and now using that to check to see if Novelist exists.
 
 **1.0.0 - 25 July 2016**
 

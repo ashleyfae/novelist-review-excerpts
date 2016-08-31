@@ -47,15 +47,12 @@ if ( ! class_exists( 'Novelist_Review_Excerpts_Addon' ) ) :
 		 */
 		public static function instance() {
 
-			if ( ! isset( self::$instance ) && ! self::$instance instanceof Novelist ) {
+			if ( ! self::$instance ) {
 				self::$instance = new Novelist_Review_Excerpts_Addon;
 				self::$instance->setup_constants();
-
-				add_action( 'plugins_loaded', array( self::$instance, 'load_textdomain' ) );
-
+				self::$instance->load_textdomain();
 				self::$instance->includes();
-
-				add_action( 'init', array( self::$instance, 'license' ) );
+				self::$instance->hooks();
 			}
 
 			return self::$instance;
@@ -135,13 +132,15 @@ if ( ! class_exists( 'Novelist_Review_Excerpts_Addon' ) ) :
 		}
 
 		/**
-		 * Set Up License
+		 * Hooks
+		 *
+		 * Set up license key field and automatic updates.
 		 *
 		 * @access private
 		 * @since  1.0.0
 		 * @return void
 		 */
-		public function license() {
+		private function hooks() {
 
 			if ( ! class_exists( 'Novelist_License' ) ) {
 				require_once NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR . 'includes/updater/class-novelist-license.php';
@@ -160,7 +159,7 @@ if ( ! class_exists( 'Novelist_Review_Excerpts_Addon' ) ) :
 		 */
 		public function load_textdomain() {
 
-			$lang_dir = dirname( plugin_basename( NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR ) ) . '/languages/';
+			$lang_dir = NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR . '/languages/';
 			$lang_dir = apply_filters( 'novelist-review-excerpts/languages-directory', $lang_dir );
 			load_plugin_textdomain( 'novelist-review-excerpts', false, $lang_dir );
 
@@ -174,70 +173,21 @@ endif; // End class check
  * Get the add-on up and running.
  *
  * @since 1.0.0
- * @return Novelist_Review_Excerpts_Addon
+ * @return Novelist_Review_Excerpts_Addon|void
  */
 function Novelist_Review_Excerpts() {
-	return Novelist_Review_Excerpts_Addon::instance();
-}
+	if ( ! class_exists( 'Novelist_Extension_Activation' ) ) {
+		require_once 'includes/class-extension-activation.php';
+	}
 
-/**
- * Initialize the Add-On
- *
- * Checks to make sure Novelist is installed, and if not, adds
- * a notice to the admin area.
- *
- * @uses  Novelist_Review_Excerpts()
- *
- * @since 1.0.0
- * @return void
- */
-function novelist_review_excerpts_init() {
-	// Load the add-on if using PHP 5.3+ and if Novelist is installed and is the correct version.
-	if ( version_compare( PHP_VERSION, '5.3', '<' ) ) {
-		add_action( 'admin_notices', 'novelist_review_excerpts_insufficient_php_version' );
-	} elseif ( class_exists( 'Novelist' ) && defined( 'NOVELIST_VERSION' ) && version_compare( NOVELIST_VERSION, '1.0.3', '>=' ) ) {
-		Novelist_Review_Excerpts();
+	$required_version = '1.0.3';
+	$activation       = new Novelist_Extension_Activation( __( 'Novelist Review Excerpts', 'novelist-review-excerpts' ), $required_version );
+
+	if ( ! $activation->is_compatible() ) {
+		$activation->run();
 	} else {
-		add_action( 'admin_notices', 'novelist_review_excerpts_novelist_not_installed' );
+		return Novelist_Review_Excerpts_Addon::instance();
 	}
 }
 
-add_action( 'plugins_loaded', 'novelist_review_excerpts_init' );
-
-/**
- * Novelist Not Installed
- *
- * Adds a notice to the admin area notifying that Novelist is not
- * installed.
- *
- * @since 1.0.0
- * @return void
- */
-function novelist_review_excerpts_novelist_not_installed() {
-	$class   = 'notice notice-error';
-	$message = sprintf(
-		__( 'Error! The Novelist plugin could not be found. You need to install Novelist version %s or later in order to use the Review Excerpts add-on.', 'novelist-review-excerpts' ),
-		'1.0.3'
-	);
-
-	printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
-}
-
-/**
- * Insufficient PHP Version
- *
- * Adds a notice to the admin area notifying that the PHP version
- * is less than 5.3.
- *
- * @since 1.0.0
- * @return void
- */
-function novelist_review_excerpts_insufficient_php_version() {
-	$class   = 'notice notice-error';
-	$message = sprintf(
-		__( 'Error! The Novelist Review Excerpts plugin requires PHP version 5.3 or greater. You have version %s. Please contact your web host to upgrade your version of PHP.', 'novelist-review-excerpts' ),
-		PHP_VERSION
-	);
-
-	printf( '<div class="%1$s"><p>%2$s</p></div>', $class, $message );
-}
+add_action( 'plugins_loaded', 'Novelist_Review_Excerpts' );
