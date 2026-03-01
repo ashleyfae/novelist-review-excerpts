@@ -2,6 +2,7 @@
 Contributors: NoseGraze
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L2TL7ZBVUMG9C
 Tags:
+Requires PHP: 7.3
 Requires at least: 4.0
 Tested up to: 4.5.1
 License: GPLv2 or later
@@ -22,8 +23,9 @@ Allows you to include excerpts of reviews on your book pages.
 
 == Changelog ==
 
-**1.0.1**
+**1.0.1 - 1 March 2026**
 
+* Fix: "Translations loaded too early" error
 * Updated EDD_SL_Plugin_Updater class.
 * Added Novelist_Extension_Activation class and now using that to check to see if Novelist exists.
 
