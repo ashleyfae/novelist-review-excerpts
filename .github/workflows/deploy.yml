@@ -1,0 +1,46 @@
+name: Deploy Release
+
+on:
+  release:
+    types: [published]
+  workflow_dispatch:
+    inputs:
+      tag_name:
+        description: 'Tag name to deploy (e.g. 1.0.1)'
+        required: true
+      pre_release:
+        description: 'Is this a pre-release?'
+        type: boolean
+        default: false
+
+jobs:
+  build:
+    name: Build & Deploy Release
+    runs-on: ubuntu-latest
+    environment: production
+
+    steps:
+      - name: Build and upload release zip
+        id: build-zip
+        uses: ashleyfae/action-build-release-zip@main
+        with:
+          composer-install: 'false'
+          tag-name: ${{ inputs.tag_name || github.event.release.tag_name }}
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ inputs.tag_name || github.event.release.tag_name }}
+
+      - name: Publish release to software platform
+        uses: ashleyfae/action-publish-sell-software-release@main
+        with:
+          asset-url: ${{ steps.build-zip.outputs.asset-url }}
+          file-name: ${{ steps.build-zip.outputs.file-name }}
+          release-version: ${{ inputs.tag_name || github.event.release.tag_name }}
+          pre-release: ${{ inputs.pre_release || github.event.release.prerelease || 'false' }}
+          releasable-type: 'product'
+          releasable-id: ${{ vars.SOFTWARE_PRODUCT_ID }}
+        env:
+          SOFTWARE_API_BASE_URL: ${{ vars.SOFTWARE_API_BASE_URL }}
+          SOFTWARE_API_TOKEN: ${{ secrets.SOFTWARE_API_TOKEN }}
