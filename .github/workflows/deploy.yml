@@ -28,7 +28,7 @@ jobs:
           tag-name: ${{ inputs.tag_name || github.event.release.tag_name }}
 
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           ref: ${{ inputs.tag_name || github.event.release.tag_name }}
 
