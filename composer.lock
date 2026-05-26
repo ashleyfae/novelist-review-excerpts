@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ashleyfae/software-updater-sdk.git",
-                "reference": "2f5717651de3d7a82c40aa2fc407dc706beb4c7f"
+                "reference": "a7e8065063f189090c40c427de12b9ae8cfa5c7c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ashleyfae/software-updater-sdk/zipball/2f5717651de3d7a82c40aa2fc407dc706beb4c7f",
-                "reference": "2f5717651de3d7a82c40aa2fc407dc706beb4c7f",
+                "url": "https://api.github.com/repos/ashleyfae/software-updater-sdk/zipball/a7e8065063f189090c40c427de12b9ae8cfa5c7c",
+                "reference": "a7e8065063f189090c40c427de12b9ae8cfa5c7c",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,7 @@
                 "source": "https://github.com/ashleyfae/software-updater-sdk/tree/main",
                 "issues": "https://github.com/ashleyfae/software-updater-sdk/issues"
             },
-            "time": "2026-05-26T09:44:03+00:00"
+            "time": "2026-05-26T13:53:55+00:00"
         }
     ],
     "packages-dev": [],

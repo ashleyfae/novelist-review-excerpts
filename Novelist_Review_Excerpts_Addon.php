@@ -92,16 +92,10 @@ class Novelist_Review_Excerpts_Addon
         new NovelistLicense(
             pluginName: 'Review Excerpts (new)',
             pluginFile: NOVELIST_REVIEW_EXCERPTS_PLUGIN_FILE,
-            productUuid: '1988526c-27eb-4bff-a138-762ce06c73cd',
+            productUuid: 'da0e5577-412c-4c8e-a5b8-9c84b9e63ff4',
             currentPluginVersion: NOVELIST_REVIEW_EXCERPTS_VERSION,
             optionName: 'novelist_review_excerpts_license_key'
         );
-
-        if (! class_exists('Novelist_License')) {
-            require_once NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR.'includes/updater/class-novelist-license.php';
-        }
-
-        new Novelist_License(NOVELIST_REVIEW_EXCERPTS_PLUGIN_FILE, 'Review Excerpts', NOVELIST_REVIEW_EXCERPTS_VERSION, 'Ashley Gibson', 'novelist_review_excerpts_license_key');
     }
 
     /**
