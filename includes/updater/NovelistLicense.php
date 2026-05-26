@@ -13,29 +13,63 @@ use AshleyFae\SoftwareUpdater\SDK;
 class NovelistLicense
 {
     public function __construct(
-        public string $pluginFile,
-        public string $productUuid,
-        public string $currentPluginVersion,
-        public string $optionName
+        protected string $pluginName,
+        protected string $pluginFile,
+        protected string $productUuid,
+        protected string $currentPluginVersion,
+        protected string $optionName
     ) {
         $this->addHooks();
     }
 
     protected function addHooks() : void
     {
-        add_action('software_updater_sdk_loaded', function(SDK $sdk) {
-            try {
-                $sdk->register(
-                    new PluginLicenseConfig(
-                        optionName: $this->optionName,
-                        productId: $this->productUuid,
-                        pluginFile: $this->pluginFile,
-                        version: $this->currentPluginVersion
-                    )
-                );
-            } catch(\Exception $e) {
-                error_log($e->getMessage());
-            }
-        });
+        // initializes with the licensing SDK
+        add_action('software_updater_sdk_loaded', [$this, 'registerLicense']);
+
+        // register in settings UI
+        add_filter('novelist/settings/licenses', [$this, 'addSettingsField']);
+    }
+
+    public function registerLicense(SDK $sdk) : void
+    {
+        try {
+            $sdk->register(
+                new PluginLicenseConfig(
+                    optionName: $this->optionName,
+                    productId: $this->productUuid,
+                    pluginFile: $this->pluginFile,
+                    version: $this->currentPluginVersion
+                )
+            );
+        } catch(Exception $e) {
+            error_log($e->getMessage());
+        }
+    }
+
+    public function addSettingsField($settings) : array
+    {
+        $newSettings = [
+            'main' => [
+                $this->optionName => [
+                    'id' => $this->optionName,
+                    'name' => sprintf(__('%s License Key', 'novelist'), $this->pluginName),
+                    'desc' => '',
+                    'type' => 'license_key',
+                    'options' => [
+                        'is_valid_license_option' => $this->optionName.'_compat_status',
+                    ],
+                    'size' => 'regular',
+                ],
+            ],
+        ];
+
+        if (is_array($settings) && array_key_exists('main', $settings)) {
+            $newSettings = array_merge($settings['main'], $newSettings['main']);
+        } else {
+            $newSettings = $newSettings['main'];
+        }
+
+        return ['main' => $newSettings];
     }
 }
