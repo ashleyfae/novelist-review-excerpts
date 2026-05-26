@@ -90,7 +90,7 @@ class Novelist_Review_Excerpts_Addon
         }
 
         new NovelistLicense(
-            pluginName: 'Review Excerpts (new)',
+            pluginName: 'Review Excerpts',
             pluginFile: NOVELIST_REVIEW_EXCERPTS_PLUGIN_FILE,
             productUuid: 'da0e5577-412c-4c8e-a5b8-9c84b9e63ff4',
             currentPluginVersion: NOVELIST_REVIEW_EXCERPTS_VERSION,
