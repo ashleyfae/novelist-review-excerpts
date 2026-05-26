@@ -24,7 +24,7 @@ jobs:
         id: build-zip
         uses: ashleyfae/action-build-release-zip@main
         with:
-          composer-install: 'false'
+          composer-install: 'true'
           tag-name: ${{ inputs.tag_name || github.event.release.tag_name }}
 
       - name: Checkout code

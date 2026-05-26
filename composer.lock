@@ -1,0 +1,60 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "e2efbd9ac18a28f2b28e58355cb78391",
+    "packages": [
+        {
+            "name": "ashleyfae/software-updater-sdk",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ashleyfae/software-updater-sdk.git",
+                "reference": "2f5717651de3d7a82c40aa2fc407dc706beb4c7f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ashleyfae/software-updater-sdk/zipball/2f5717651de3d7a82c40aa2fc407dc706beb4c7f",
+                "reference": "2f5717651de3d7a82c40aa2fc407dc706beb4c7f",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AshleyFae\\SoftwareUpdater\\": "src/"
+                },
+                "files": [
+                    "src/init.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress plugin integration with software.nosegraze.com for license management and automatic updates.",
+            "support": {
+                "source": "https://github.com/ashleyfae/software-updater-sdk/tree/main",
+                "issues": "https://github.com/ashleyfae/software-updater-sdk/issues"
+            },
+            "time": "2026-05-26T09:44:03+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "ashleyfae/software-updater-sdk": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=8.0"
+    },
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}

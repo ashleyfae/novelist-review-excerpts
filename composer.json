@@ -1,0 +1,18 @@
+{
+    "name": "ashleyfae/novelist-review-excerpts",
+    "description": "Novelist Review Excerpts add-on.",
+    "type": "wordpress-plugin",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "php": ">=8.0",
+        "ashleyfae/software-updater-sdk": "dev-main"
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/ashleyfae/software-updater-sdk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true
+}
