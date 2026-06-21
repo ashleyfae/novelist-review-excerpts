@@ -117,6 +117,9 @@ class NovelistLicense
                     'desc' => '',
                     'type' => 'license_key',
                     'options' => [
+                        'version' => 2.0,
+
+                        // legacy EDD licensing
                         'is_valid_license_option' => $this->optionName.'_compat_status',
                     ],
                     'size' => 'regular',
@@ -169,7 +172,7 @@ class NovelistLicense
 
             $currentKey = (string) get_option($this->optionName, '');
             $status     = SDK::instance()->license($this->optionName)->getStatus();
-            if ($submittedKey === $currentKey && $status?->isActive()) {
+            if ($submittedKey === $currentKey && $status?->isActivatedFor(home_url())) {
                 return;
             }
 
