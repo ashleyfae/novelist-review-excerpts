@@ -1,5 +1,7 @@
 <?php
 
+use AshleyFae\NovelistLicensing\License;
+
 /**
  * Novelist_Review_Excerpts_Addon.php
  *
@@ -72,6 +74,7 @@ class Novelist_Review_Excerpts_Addon
      */
     private function includes() : void
     {
+        require_once NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR.'vendor/autoload.php';
         require_once NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR.'includes/field-functions.php';
         require_once NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR.'includes/load-assets.php';
     }
@@ -85,11 +88,11 @@ class Novelist_Review_Excerpts_Addon
      */
     private function hooks(): void
     {
-        if (! class_exists(NovelistLicense::class)) {
-            require_once NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR.'includes/updater/NovelistLicense.php';
+        if (! class_exists(License::class)) {
+            return;
         }
 
-        new NovelistLicense(
+        new License(
             pluginName: 'Review Excerpts',
             pluginFile: NOVELIST_REVIEW_EXCERPTS_PLUGIN_FILE,
             productUuid: 'da0e5577-412c-4c8e-a5b8-9c84b9e63ff4',
