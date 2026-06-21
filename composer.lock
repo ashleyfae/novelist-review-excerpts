@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:ashleyfae/novelist-licensing.git",
-                "reference": "6d5aa72aa6eaac7567eec60479f91bcb71086bc7"
+                "reference": "b3fd80abdf286f807066d283bc3dc69836e77c14"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ashleyfae/novelist-licensing/zipball/6d5aa72aa6eaac7567eec60479f91bcb71086bc7",
-                "reference": "6d5aa72aa6eaac7567eec60479f91bcb71086bc7",
+                "url": "https://api.github.com/repos/ashleyfae/novelist-licensing/zipball/b3fd80abdf286f807066d283bc3dc69836e77c14",
+                "reference": "b3fd80abdf286f807066d283bc3dc69836e77c14",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 "source": "https://github.com/ashleyfae/novelist-licensing/tree/main",
                 "issues": "https://github.com/ashleyfae/novelist-licensing/issues"
             },
-            "time": "2026-06-21T14:05:59+00:00"
+            "time": "2026-06-21T15:08:47+00:00"
         },
         {
             "name": "ashleyfae/software-updater-sdk",
