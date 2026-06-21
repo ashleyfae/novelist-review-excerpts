@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:ashleyfae/novelist-licensing.git",
-                "reference": "82b4d82c07f96076fe6620fb37daae2f51d3c4e8"
+                "reference": "6d5aa72aa6eaac7567eec60479f91bcb71086bc7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ashleyfae/novelist-licensing/zipball/82b4d82c07f96076fe6620fb37daae2f51d3c4e8",
-                "reference": "82b4d82c07f96076fe6620fb37daae2f51d3c4e8",
+                "url": "https://api.github.com/repos/ashleyfae/novelist-licensing/zipball/6d5aa72aa6eaac7567eec60479f91bcb71086bc7",
+                "reference": "6d5aa72aa6eaac7567eec60479f91bcb71086bc7",
                 "shasum": ""
             },
             "require": {
@@ -44,7 +44,7 @@
                 "source": "https://github.com/ashleyfae/novelist-licensing/tree/main",
                 "issues": "https://github.com/ashleyfae/novelist-licensing/issues"
             },
-            "time": "2026-06-21T13:56:37+00:00"
+            "time": "2026-06-21T14:05:59+00:00"
         },
         {
             "name": "ashleyfae/software-updater-sdk",
@@ -52,12 +52,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/ashleyfae/software-updater-sdk.git",
-                "reference": "4fe9e2627dd231576c959be4604eb10344d99cf1"
+                "reference": "0049ecaa06d9bae93cff61f5312fbcb7a9689047"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ashleyfae/software-updater-sdk/zipball/4fe9e2627dd231576c959be4604eb10344d99cf1",
-                "reference": "4fe9e2627dd231576c959be4604eb10344d99cf1",
+                "url": "https://api.github.com/repos/ashleyfae/software-updater-sdk/zipball/0049ecaa06d9bae93cff61f5312fbcb7a9689047",
+                "reference": "0049ecaa06d9bae93cff61f5312fbcb7a9689047",
                 "shasum": ""
             },
             "require": {
@@ -81,7 +81,7 @@
                 "source": "https://github.com/ashleyfae/software-updater-sdk/tree/main",
                 "issues": "https://github.com/ashleyfae/software-updater-sdk/issues"
             },
-            "time": "2026-06-21T12:32:17+00:00"
+            "time": "2026-06-21T14:05:37+00:00"
         }
     ],
     "packages-dev": [],
