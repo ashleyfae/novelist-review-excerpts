@@ -5,12 +5,16 @@
     "license": "GPL-2.0-or-later",
     "require": {
         "php": ">=8.0",
-        "ashleyfae/software-updater-sdk": "dev-main"
+        "ashleyfae/novelist-licensing": "dev-main"
     },
     "repositories": [
         {
             "type": "vcs",
             "url": "https://github.com/ashleyfae/software-updater-sdk"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/ashleyfae/novelist-licensing"
         }
     ],
     "minimum-stability": "dev",

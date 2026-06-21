@@ -4,20 +4,60 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e2efbd9ac18a28f2b28e58355cb78391",
+    "content-hash": "106c190afb902298d54349bc7249109f",
     "packages": [
+        {
+            "name": "ashleyfae/novelist-licensing",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:ashleyfae/novelist-licensing.git",
+                "reference": "f5ad8f66a06335153ade3e0f138644dddc9d2cd4"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ashleyfae/novelist-licensing/zipball/f5ad8f66a06335153ade3e0f138644dddc9d2cd4",
+                "reference": "f5ad8f66a06335153ade3e0f138644dddc9d2cd4",
+                "shasum": ""
+            },
+            "require": {
+                "ashleyfae/software-updater-sdk": "dev-main",
+                "php": ">=8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AshleyFae\\NovelistLicensing\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ashley Gibson"
+                }
+            ],
+            "description": "Licensing for Novelist plugins",
+            "support": {
+                "source": "https://github.com/ashleyfae/novelist-licensing/tree/main",
+                "issues": "https://github.com/ashleyfae/novelist-licensing/issues"
+            },
+            "time": "2026-06-21T12:34:04+00:00"
+        },
         {
             "name": "ashleyfae/software-updater-sdk",
             "version": "dev-main",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ashleyfae/software-updater-sdk.git",
-                "reference": "d9092a238f66eb0e4632d6be51d202b60c45a388"
+                "reference": "eec2ed6d8f19cf4bd0eff0b7d8fe5e8e66eec5dc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ashleyfae/software-updater-sdk/zipball/d9092a238f66eb0e4632d6be51d202b60c45a388",
-                "reference": "d9092a238f66eb0e4632d6be51d202b60c45a388",
+                "url": "https://api.github.com/repos/ashleyfae/software-updater-sdk/zipball/eec2ed6d8f19cf4bd0eff0b7d8fe5e8e66eec5dc",
+                "reference": "eec2ed6d8f19cf4bd0eff0b7d8fe5e8e66eec5dc",
                 "shasum": ""
             },
             "require": {
@@ -41,14 +81,14 @@
                 "source": "https://github.com/ashleyfae/software-updater-sdk/tree/main",
                 "issues": "https://github.com/ashleyfae/software-updater-sdk/issues"
             },
-            "time": "2026-05-26T14:58:23+00:00"
+            "time": "2026-06-20T12:01:46+00:00"
         }
     ],
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "ashleyfae/software-updater-sdk": 20
+        "ashleyfae/novelist-licensing": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
