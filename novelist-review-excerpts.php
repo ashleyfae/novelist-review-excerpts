@@ -64,7 +64,7 @@ function Novelist_Review_Excerpts()
     if (! $activation->is_compatible()) {
         $activation->run();
     } else {
-        require_once NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR.'Novelist_Review_Excerpts_Addon.php';
+        require_once NOVELIST_REVIEW_EXCERPTS_PLUGIN_DIR.'includes/Novelist_Review_Excerpts_Addon.php';
 
         return Novelist_Review_Excerpts_Addon::instance();
     }
