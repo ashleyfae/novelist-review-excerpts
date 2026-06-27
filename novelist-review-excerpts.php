@@ -9,6 +9,8 @@
  * License: GPL2
  * Text Domain: novelist-review-excerpts
  * Domain Path: languages
+ * Requires PHP: 8.0
+ * Requires at least: 4.0
  *
  * @package   novelist-review-excerpts
  * @copyright Copyright (c) 2026, Nose Graze Ltd.
