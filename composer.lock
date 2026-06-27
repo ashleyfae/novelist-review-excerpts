@@ -1,0 +1,100 @@
+{
+    "_readme": [
+        "This file locks the dependencies of your project to a known state",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
+        "This file is @generated automatically"
+    ],
+    "content-hash": "106c190afb902298d54349bc7249109f",
+    "packages": [
+        {
+            "name": "ashleyfae/novelist-licensing",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "git@github.com:ashleyfae/novelist-licensing.git",
+                "reference": "b3fd80abdf286f807066d283bc3dc69836e77c14"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ashleyfae/novelist-licensing/zipball/b3fd80abdf286f807066d283bc3dc69836e77c14",
+                "reference": "b3fd80abdf286f807066d283bc3dc69836e77c14",
+                "shasum": ""
+            },
+            "require": {
+                "ashleyfae/software-updater-sdk": "dev-main",
+                "php": ">=8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AshleyFae\\NovelistLicensing\\": "src/"
+                }
+            },
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Ashley Gibson"
+                }
+            ],
+            "description": "Licensing for Novelist plugins",
+            "support": {
+                "source": "https://github.com/ashleyfae/novelist-licensing/tree/main",
+                "issues": "https://github.com/ashleyfae/novelist-licensing/issues"
+            },
+            "time": "2026-06-21T15:08:47+00:00"
+        },
+        {
+            "name": "ashleyfae/software-updater-sdk",
+            "version": "dev-main",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/ashleyfae/software-updater-sdk.git",
+                "reference": "0049ecaa06d9bae93cff61f5312fbcb7a9689047"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/ashleyfae/software-updater-sdk/zipball/0049ecaa06d9bae93cff61f5312fbcb7a9689047",
+                "reference": "0049ecaa06d9bae93cff61f5312fbcb7a9689047",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=8.0"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "AshleyFae\\SoftwareUpdater\\": "src/"
+                },
+                "files": [
+                    "src/init.php"
+                ]
+            },
+            "license": [
+                "MIT"
+            ],
+            "description": "WordPress plugin integration with software.nosegraze.com for license management and automatic updates.",
+            "support": {
+                "source": "https://github.com/ashleyfae/software-updater-sdk/tree/main",
+                "issues": "https://github.com/ashleyfae/software-updater-sdk/issues"
+            },
+            "time": "2026-06-21T14:05:37+00:00"
+        }
+    ],
+    "packages-dev": [],
+    "aliases": [],
+    "minimum-stability": "dev",
+    "stability-flags": {
+        "ashleyfae/novelist-licensing": 20
+    },
+    "prefer-stable": true,
+    "prefer-lowest": false,
+    "platform": {
+        "php": ">=8.0"
+    },
+    "platform-dev": {},
+    "plugin-api-version": "2.6.0"
+}

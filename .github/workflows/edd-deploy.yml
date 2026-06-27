@@ -15,7 +15,7 @@ jobs:
         id: build-zip
         uses: ashleyfae/action-build-release-zip@main
         with:
-          composer-install: 'false'
+          composer-install: 'true'
 
       - name: Checkout code
         uses: actions/checkout@v4

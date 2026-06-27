@@ -2,7 +2,7 @@
 Contributors: NoseGraze
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=L2TL7ZBVUMG9C
 Tags:
-Requires PHP: 7.3
+Requires PHP: 8.0
 Requires at least: 4.0
 Tested up to: 4.5.1
 License: GPLv2 or later
@@ -22,6 +22,10 @@ Allows you to include excerpts of reviews on your book pages.
 1. Add or edit a book and start adding review quotes.
 
 == Changelog ==
+
+**1.0.2 - 27 June 2026**
+
+* Tweak: Minimum PHP version is now 8.0+.
 
 **1.0.1 - 1 March 2026**
 
