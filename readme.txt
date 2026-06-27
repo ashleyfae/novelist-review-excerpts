@@ -23,7 +23,7 @@ Allows you to include excerpts of reviews on your book pages.
 
 == Changelog ==
 
-**1.0.2-beta1**
+**1.0.2 - 27 June 2026**
 
 * Tweak: Minimum PHP version is now 8.0+.
 

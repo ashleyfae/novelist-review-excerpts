@@ -3,7 +3,7 @@
  * Plugin Name: Novelist Review Excerpts
  * Plugin URI: https://novelistplugin.com/downloads/review-excerpts/
  * Description: Allows you to include excerpts of reviews on your book pages.
- * Version: 1.0.2-beta1
+ * Version: 1.0.2
  * Author: Nose Graze
  * Author URI: https://www.nosegraze.com
  * License: GPL2
@@ -26,7 +26,7 @@ if (! version_compare(PHP_VERSION, '8.0', '>=')) {
 
 // Plugin version.
 if (! defined('NOVELIST_REVIEW_EXCERPTS_VERSION')) {
-    define('NOVELIST_REVIEW_EXCERPTS_VERSION', '1.0.2-beta1');
+    define('NOVELIST_REVIEW_EXCERPTS_VERSION', '1.0.2');
 }
 
 // Plugin Folder Path.
