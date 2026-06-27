@@ -1,8 +1,8 @@
 name: Deploy Release to EDD
 
 on:
-  release:
-    types: [published]
+  workflow_dispatch:
+    # Disabled. Original trigger: release: types: [published]
 
 jobs:
   build:
